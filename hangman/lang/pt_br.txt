@@ -1,0 +1,38 @@
+\nJogo da Forca v2.0\n
+Jogar Sozinho
+Jogar em dupla
+Editar Palavras/Frases
+Opções
+Créditos
+Sair
+Ajuda
+#
+\nEditar Palavras/Frases\n
+Adicionar palavras/frases (Simples)
+Adicionar palavras/frases (Avançado)
+Remover palavras/frases (Simples)
+Remover palavras/frases (Avançado)
+Mostrar lista de palavras/frases (Simples)
+Mostrar lista de palavras/frases (Avançado)
+#
+\nJogar Sozinho\n
+Jogar Sozinho
+Jogar em Dupla
+Voltar
+Ajuda
+#
+\nNovo Jogo Avançado\n
+Jogar Sozinho
+Jogar em Dupla
+Voltar
+Ajuda
+#
+
+#
+Idioma: 
+Voltar
+#
+\nCréditos\n
+Will
+\nDigite qualquer coisa para voltar\n
+#
