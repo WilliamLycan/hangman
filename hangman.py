@@ -1,504 +1,162 @@
 #Hangman v2.0
 #Programador: Will
 #__________________________________________________________
-
-#Strings com os textos do menu principal
-msg_title = "\nJogo da Forca v2.0\n"
-msg_sp = "Jogar Sozinho"
-msg_mp = "Jogar em dupla"
-msg_edit = "Editar Palavras/Frases"
-msg_options = "Opções"
-msg_credits = "Créditos"
-msg_exit = "Sair"
-msg_help = "Ajuda"
-
-msgs_mm = [msg_title,
-           msg_sp,
-           msg_mp,
-           msg_edit,
-           msg_options,
-           msg_credits,
-           msg_exit,
-           msg_help]
-
-#Strings com os textos de ajuda do menu principal
-msg_sp_help = "(Palavras/frases registradas)"
-msg_mp_help = "(Palavras/frases definidas por outro jogador)"
-msg_edit_help = "(Adicionar ou remover palavras/frases)"
-msg_options_help = "(Configurar opções do jogo)"
-msg_credits_help = "(Mostrar nomes da equipe de desenvolvimento)"
-msg_exit_help = "(Fechar o jogo)"
-msg_help_help = "(Escolha novamente para desligar)"
-
-msgs_mm_help = [' ',
-                msg_sp_help,
-                msg_mp_help,
-                msg_edit_help,
-                msg_options_help,
-                msg_credits_help,
-                msg_exit_help,
-                msg_help_help]
-
-#Strings com os textos do menu jogar sozinho
-msg_sp_title = "\nJogar Sozinho\n"
-msg_sp_s = "Simples"
-msg_sp_a = "Avançado"
-msg_back = "Voltar"
-
-msgs_sp = [msg_sp_title,
-           msg_sp_s,
-           msg_sp_a,
-           msg_back,
-           msg_help]
-
-#Strings com os textos de ajuda do menu jogar sozinho
-msg_sp_s_help = "  (Uma palavra/frase)"
-msg_sp_a_help = " (Três palavras/frases com dica)"
-msg_back_help = "   (Voltar ao menu principal)"
-
-msgs_sp_help = [' ',
-                msg_sp_s_help,
-                msg_sp_a_help,
-                msg_back_help,
-                "    " +  msg_help_help]
-
-#Strings in game
-msg_in_game_try = "Tentativas: "
-msg_in_game_hint = "Dica: "
-msg_in_game_enter = "Digite uma letra/número ou a palavra/frase inteira: "
-msg_in_game_win = "Acertô mizerávi!"
-msg_in_game_lose = "Você perdeu!"
-msg_in_game_invalid = "Texto inválido"
-msg_in_game_repeat = "Você já tentou essa letra!"
-
-msgs_in_game = [msg_in_game_try,
-                msg_in_game_hint,
-                msg_in_game_enter,
-                msg_in_game_win,
-                msg_in_game_lose,
-                msg_in_game_invalid,
-                msg_in_game_repeat]
-
-#Strings com os textos do menu jogo em dupla
-msg_mp_title = "\nJogar em Dupla\n"
-msg_mp_s = "Simples"
-msg_mp_a = "Avançado"
-
-msgs_mp = [msg_mp_title,
-           msg_mp_s,
-           msg_mp_a,
-           msg_back,
-           msg_help]
-
-#Strings com os textos de ajuda do menu de jogo em dupla
-msg_mp_s_help = "  (Uma palavra/frase definida por outro jogador)"
-msg_mp_a_help = " (Três palavras/frases com dica definidas por outro jogador)"
-
-msgs_mp_help = [' ',
-                msg_mp_s_help,
-                msg_mp_a_help,
-                msg_back_help,
-                "    " + msg_help_help]
-
-#Strings com os textos do jogo em dupla simples
-msg_mp_s_in_game_title = "\nJogar em dupla -> Simples\n"
-msg_mp_s_in_game_enter_word = "Digite a palavra/frase (Não deixe  outro jogador ver!):"
-msg_mp_s_in_game_enter_hint = "Digite a dica (Enter para deixar sem dica):"
-
-msgs_mp_s_in_game = [msg_mp_s_in_game_title,
-                     msg_mp_s_in_game_enter_word,
-                     msg_mp_s_in_game_enter_hint]
-
-#Strings com os textos do jogo em dupla avançado
-msg_mp_a_in_game_title = "\nJogar em dupla -> Avançado\n"
-msg_mp_a_in_game_enter_1_word = "Digite a primeira palavra/frase:"
-msg_mp_a_in_game_enter_2_word = "Digite a segunda palavra/frase:"
-msg_mp_a_in_game_enter_3_word = "Digite a terceira palavra/frase:"
-msg_mp_a_in_game_enter_hint = "Digite a dica:"
-
-msgs_mp_a_in_game = [msg_mp_a_in_game_title,
-                     msg_mp_a_in_game_enter_1_word,
-                     msg_mp_a_in_game_enter_2_word,
-                     msg_mp_a_in_game_enter_3_word,
-                     msg_mp_a_in_game_enter_hint]
+white = '\033[;30;m'
+red = '\033[;31;m'
+green = '\033[;32;m'
+yellow = '\033[;33;m'
+blue = '\033[;34;m'
+purple = '\033[;35;m'
+glue = '\033[;36;m'
+gray = '\033[;37;m'
+alphanum = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
 
-#Strings com os textos do menu de edição
-msg_edit_title = "\nEditar palavras/frases e dicas\n"
-msg_edit_add_s = "Adicionar palavras/frases simples"
-msg_edit_add_a = "Adicionar palavras/frases avançado"
-msg_edit_remove_s = "Remover palavras/frases simples"
-msg_edit_remove_a = "Remover palavras/frases avançado"
-
-msgs_edit = [msg_edit_title,
-             msg_edit_add_s,
-             msg_edit_add_a,
-             msg_edit_remove_s,
-             msg_edit_remove_a,
-             msg_back]
-
-#Strings do menu adicionar simples
-msg_edit_add_s_title = "\nAdicionar palavras/frases simples\n"
-msg_edit_cancel = "(Digite # para cancelar)"
-msg_edit_add_s_enter_word = "Digite a palavra/frase para adicionar:"
-msg_edit_add_s_done = "Palavra/frase adicionada!"
-
-msgs_edit_add_s = [msg_edit_add_s_title,
-                   msg_edit_cancel,
-                   msg_edit_add_s_enter_word,
-                   msg_edit_add_s_done]
-
-#Strings do menu adicionar avançado
-msg_edit_add_a_title = "\nAdicionar palavras/frases avançado\n"
-msg_edit_add_a_enter_1_word = "Digite a primeira palavra/frase para adicionar:"
-msg_edit_add_a_enter_2_word = "Digite a segunda palavra/frase para adicionar:"
-msg_edit_add_a_enter_3_word = "Digite a terceira palavra/frase para adicionar:"
-msg_edit_add_a_enter_hint = "Digite a dica para adicionar:"
-msg_edit_add_a_done = "Palavras/frases e dica adicionadas!"
-
-msgs_edit_add_a = [msg_edit_add_a_title,
-                   msg_edit_cancel,
-                   msg_edit_add_a_enter_1_word,
-                   msg_edit_add_a_enter_2_word,
-                   msg_edit_add_a_enter_3_word,
-                   msg_edit_add_a_enter_hint,
-                   msg_edit_add_a_done]
-
-#Strings do menu remover simples
-msg_edit_remove_s_title = "\nRemover palavras/frases simples\n"
-msg_edit_remove_s_enter_n = "Digite o número da palavra/frase para remover:"
-msg_edit_remove_s_done = "Palavra/frase removida!"
-
-msgs_edit_remove_s = [msg_edit_remove_s_title,
-                      msg_edit_cancel,
-                      msg_edit_remove_s_enter_n,
-                      msg_edit_remove_s_done]
-
-#Strings do menu remover avançado
-msg_edit_remove_a_title = "\nRemover palavras/frases avançado\n"
-msg_edit_remove_a_enter_n = "Digite o número do grupo para remover:"
-msg_edit_remove_a_done = "Grupo de palavras/frases removido!"
-
-msgs_edit_remove_a = [msg_edit_remove_a_title,
-                      msg_edit_cancel,
-                      msg_edit_remove_a_enter_n,
-                      msg_edit_remove_a_done]
-
-#Strings do menu opções
-msg_options_title = "\nOpções\n"
-msg_options_op1 = "Mudar idioma: "
-msg_options_lang = "Português"
-
-msgs_options = [msg_options_title,
-                msg_options_op1,
-                msg_back]
-
-#Mensagens dos créditos
-msg_credits_title = "\nCréditos\n"
-msg_credits = ""
-msg_credits_press_anything = "\nDigite qualquer coisa para voltar"
-
-msgs_credits = [msg_credits_title,
-                msg_credits,
-                msg_credits_press_anything]
-
-#__________________________________________________________
-
-#Esta seção do código deixa as mensagens de ajuda alinhadas
-
-#Lista com os comprimentos de cada string
-msgs_len_list = []
-
-#Coloca o tamanho das mensagens em uma lista
-for x in msgs_mm:
-    msgs_len_list.append(len(x))
-
-#Variável que guarda o numero de caracteres da maior string
-bml = max(msgs_len_list)
-
-#Função que adiciona o espaço de acordo com o tamanho da mensagem
-def add_space(msgs, msgs_help, bml):
-    index = 0
-    for x in msgs_help:
-        msgs_help[index] = (' ' * (bml - len(msgs[index])) + ' ' + msgs_help[index])
-        index += 1
-    return list(msgs_help)
-
-msgs_mm_help = add_space(msgs_mm, msgs_mm_help, bml)
-del msgs_len_list
-del bml
-
-#_________________________________________________________
-
-#Função que recebe duas listas com strings e imprime o conteúdo
-def print_menu_help(menu, menu_help, bool_help):
-    index = 0
-    for x in menu:
-        if bool_help:
-            if index == 0:
-                print(menu[index] + menu_help[index])
-            else:
-                print(str(index) + ' ' + menu[index] + menu_help[index])
-        else:
-            if index == 0:
-                print(menu[index])
-            else:
-                print(str(index) + ' ' + menu[index])
-        index += 1
-        
-def print_menu(menu):
-    index = 0
-    for x in menu:
-        if index == 0:
-            print(menu[index])
-        else:
-            print(str(index) + ' ' + menu[index])
-        index += 1
-
-#Tabela com os caracteres alfanuméricos
-alphanum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-#Tabela que vai ser preenchida com os caracteres já tentados
-hidden_alphanum = []
-
-#Forca com o boneco
-hangman = list("__________\n|        |\n|         \n|          \n|          \n|\n|")
-
-#Tabela com os caracteres especiais, eles não serão escondidos
-special_chars = "\"\'!@#$%¢¨¬&*()-_+=[]{}ªº<>,.;:/\\?°"
-
-#Recebe uma lista e retorna outra string com os caracteres substituídos
-#por underscore, exceto os que estão na tabela de caracteres especiais
+# Recebe uma palavra/frase e retorna uma lista com os caracteres escondidos por underscore.
 def hide(word):
-    hidden_word = list(word)
-
-    index = 0
-    
-    for x in hidden_word:
-        if not hidden_word[index] in special_chars:
-            hidden_word[index] = '_'
-        if word[index] == ' ':
-            hidden_word[index] = ' '
-        index += 1
-
-    return hidden_word
-
-#Atualiza a tabela de caracteres
-def update_alphanum(l):
-    if len(l) > 1:
-        return
-    else:
-        index = 0
-        for x in alphanum:
-            if l == x:
-                if not l in hidden_alphanum:
-                    hidden_alphanum.append(alphanum[index])
-            index += 1
-
-#Atualiza o boneco na forca (mudar para uma guilhotina se possível)
-def update_hangman(tries):
-    if tries == 5:
-        return
-    elif tries == 4:
-        hangman[31] = 'O'
-        hangman[42] = '|'
-    elif tries == 3:
-        hangman[41] = '/'
-    elif tries == 2:
-        hangman[43] = '\\'
-    elif tries == 1:
-        hangman[53] = '/'
-    elif tries == 0:
-        hangman[55] = '\\'
-
-#Reseta o boneco para o estado original
-def reset_hangman():
-    hangman[31] = ' '
-    hangman[42] = ' '
-    hangman[41] = ' '
-    hangman[43] = ' '
-    hangman[53] = ' '
-    hangman[55] = ' '
-
-#Recebe uma palavra e começa o jogo
-def play_s(words):
-    win = False
-    lose = False
-    tries = 5
-    word = words[0]
-    hint = words[1]
-    hidden_word = hide(word)
-    
-    while True:
-        update_hangman(tries)        
-        print('\n' + " ".join(hidden_alphanum))
-        print('\n' + msgs_in_game[0] + str(tries))
-        print(msgs_in_game[1] + hint)
-        print("".join(hangman))
-        print('|' + ' '.join(hidden_word))
-
-        if hidden_word == list(word) and not lose:
-            hidden_word = list(word)
-            print(msgs_in_game[3])
-            if not win:
-                win = True
-                continue
-        
-        if tries == 0 and not win:
-            hidden_word = list(word)
-            print(msgs_in_game[4])
-            if not lose:
-                lose = True
-                continue
-
-        if win or lose:
-            break
-
-        print('\n' + msgs_in_game[2] + '\n')
-        
-        l = (input('\n')).upper()
-        
-        if len(l) == 1:
-            if l in hidden_alphanum:
-                print('\n' + msgs_in_game[6] +'\n')
-                continue
-        
-            update_alphanum(l)
-            index = 0
-            if l in word:
-                for x in word:
-                    if l == word[index]:
-                        hidden_word[index] = word[index]
-                    index += 1
-            else:
-                tries -= 1
-        elif len(l) == len(word):
-            if l == word:
-                hidden_word = list(word)
-            else:
-                tries -= 1
+    h_word = list(word)
+    for l in range(0, len(h_word)):
+        if word[l] in alphanum:
+            h_word[l] = '_'
         else:
-            print('\n' + msgs_in_game[5] + '\n')
-
-    hidden_alphanum.clear()
-    reset_hangman()
-    input('\n')
-
-#def play_a(words):
+            h_word[l] = word[l]
+    return h_word
 
 
-def sp_s():
-    print("Você selecionou o jogo solo simples")
-
-def sp_a():
-    print("Você selecionou o jogo solo avançado")
-    
-def mp_s():
-    print(msgs_mp_s_in_game[0] + '\n')
-    print(msgs_mp_s_in_game[1])
-    words = []
-    words.append((input('\n')).upper())
-    print('\n' + msgs_mp_s_in_game[2])
-    words.append((input('\n')).upper())
-    play_s(words)
-        
-def mp_a():
-    print("Você selecionou o jogo em dupla avançado")
-
-def sp():
-    bool_help =  False
-    
+def play_s(word):
+    word = str(word).upper()
+    h_word = hide(word)
+    h_alphanum = []
+    tries = 5
     while True:
-        print_menu_help(msgs_sp, msgs_sp_help, bool_help)
-    
-        option = input('\n')
-
-        if option == '1':
-            print("Você selecionou o jogo solo simples.")
-        elif option == '2':
-            print("Você selecionou o jogo solo avançado.")
-        elif option == '3':
+        # Mostra o menu in game. Uma lista com todas as letras que foram tentadas, o número de tentativas e a palavra
+        # oculta.
+        print('\n' + " ".join(h_alphanum))
+        print(f'Tentativas restantes: {tries}\n')
+        print(' '.join(h_word))
+        # Verifica se ainda existem tentativas, senão encerra o loop.
+        if tries == 0:
+            print(f'Você perdeu! A palavra/frase secreta é {word}')
+            # Aguarda o jogador pressionar ENTER.
+            input()
             break
-        elif option ==  '4':
-            bool_help = not bool_help
-            
-def mp():
-    bool_help =  False
+        if h_word == list(word):
+            print('Acertô mizerávi!')
+            # Aguarda o jogador pressionar ENTER.
+            input()
+            break
+        # Captura apenas o primeiro caractere
+        l = str(input('\nLetra: ')).upper()[0]
+        # Verifica se a letra já foi digitada consultando a lista de letras.
+        if l in h_alphanum:
+            print(f'Você já tentou o caractere {l}!')
+            input()
+            continue
+        else:
+            h_alphanum.append(l)
+        # Atualiza a palavra oculta caso exista a letra na palavra/frase.
+        if l in word:
+            for i in range(0, len(word)):
+                if word[i] == l:
+                    h_word[i] = l
+        else:
+            tries -= 1
 
+
+def play_a(words):
+    h_words = []
+    for i in range(0, len(words)):
+        words[i] = words[i].upper()
+        h_words.append(hide(words[i].upper()))
+    # Armazena a última palavra/frase em uma variável, essa é a dica.
+    tip = words[-1].upper()
+    # Retira a dica da lista de palavras ocultas e da lista de palavras.
+    h_words.pop()
+    words.pop()
+    h_alphanum = []
+    tries = 5
     while True:
-        print_menu_help(msgs_mp, msgs_mp_help, bool_help)
-    
-        option = input('\n')
-
-        if option == '1':
-            mp_s()
+        print('\n' + '=' * 40)
+        print(" ".join(h_alphanum))
+        print(f'Tentativas restantes: {tries}\n')
+        for w in h_words:
+            print(' '.join(w))
+        print(f'\nDica: {tip}')
+        # Verifica se ainda existem tentativas, senão encerra o loop.
+        if tries == 0:
+            print('Você perdeu! As palavras/frases secretas são')
+            for w in words:
+                print(w)
+            # Aguarda o jogador pressionar ENTER.
+            input()
             break
-        elif option == '2':
-            mp_a()
+        win = True
+        # Verifica se as palavras estão diferentes, se sim, invalida a vitória.
+        for i in range(0, len(words)):
+            if h_words[i] != list(words[i]):
+                win = False
+        if win:
+            print('Acertô mizerávi!')
+            # Aguarda o jogador pressionar ENTER.
+            input()
             break
-        elif option == '3':
-            break
-        elif option ==  '4':
-            bool_help = not bool_help
+        # Captura apenas o primeiro caractere
+        l = str(input('\nLetra: ')).upper()[0]
+        # Verifica se a letra já foi digitada consultando a lista de letras.
+        if l in h_alphanum:
+            print(f'Você já tentou a letra {l}!')
+            input()
+            continue
+        else:
+            h_alphanum.append(l)
+        # Atualiza a palavra oculta caso exista a letra na palavra/frase.
+        h = False
+        for x in range(0, len(words)):
+            if l in words[x]:
+                h = True
+                for y in range(0, len(words[x])):
+                    if l == words[x][y]:
+                        h_words[x][y] = l
+        if not h:
+            tries -= 1
 
-def edit():
-    done = False
-    
-    while not done:
-        print_menu(msgs_edit)
 
-        option = input('\n')
-
-        if option == '1':
-            print("Adicionar palavras simples")
-        elif option == '2':
-            print("Adicionar palavras avançado")
-        elif option == '3':
-            print("Remover palavras simples")
-        elif option == '4':
-            print("Remover palavras avançado")
-        elif option == '5':
-            done = not done
-
-def options():
+def versus():
     while True:
-        print(msgs_options[0])
-        print(msgs_options[1] + ' ' + msgs_options[2])
-
-        option = input('\n')
-
-        if option == '1':
-            print("Você mudou o idioma.")
-        elif option == '2':
+        print('1 Simples\n2 Avançado\n3 Voltar')
+        op = str(input())[0]
+        if op == '1':
+            play_s(str(input('Digite a palavra/frase secreta: ')))
+            break
+        elif op == '2':
+            words = []
+            for i in range(0, 3):
+                if i != 2:
+                    w = str(input(f'Digite a {i+1}ª palavra/frase: '))
+                    words.append(w)
+                else:
+                    words.append(str(input('Qual é a dica? ')))
+            play_s(words)
+            break
+        elif op == '3':
             break
 
-def credits():
-    print(msgs_credits[0])
-    print(msgs_credits[1])
-    print(msgs_credits[2])
 
-    input('\n')
+def mainloop():
+    while True:
+        print(f'=' * 40)
+        print(f'{glue}{"JOGO DA FORCA V3.0":*^40}{white}')
+        print(f'=' * 40)
+        print(f'{purple}1 Novo Jogo Solo\n{blue}2 Novo Jogo Versus\n{red}3 Sair{white}')
+        op = str(input())[0]
+        if op == '1':
+            print('Jogo Solo')
+        elif op == '2':
+            versus()
+        elif op == '3':
+            break
+        else:
+            print('Opção inválida.')
 
-#Loop principal do jogo
-bool_help = False
-done =  False
 
-while True:
-    print_menu_help(msgs_mm, msgs_mm_help, bool_help)
-    option = input('\n')
-    
-    if option == '1':
-        sp()
-    elif option == '2':
-        mp()
-    elif option == '3':
-        edit()
-    elif option == '4':
-        options()
-    elif option == '5':
-        credits()
-    elif option == '6':
-        print("\nSaindo...\n")
-        break
-    elif option == '7':
-        bool_help = not bool_help
+mainloop()
