@@ -150,7 +150,7 @@ def mainloop():
         print(f'{purple}1 Novo Jogo Solo\n{blue}2 Novo Jogo Versus\n{red}3 Sair{white}')
         op = str(input())[0]
         if op == '1':
-            print('Jogo Solo')
+            print('Jogo Solo em desenvolvimento...')
         elif op == '2':
             versus()
         elif op == '3':
