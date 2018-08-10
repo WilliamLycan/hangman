@@ -23,56 +23,18 @@ def hide(word):
     return h_word
 
 
-def play_s(word):
-    word = str(word).upper()
-    h_word = hide(word)
-    h_alphanum = []
-    tries = 5
-    while True:
-        # Mostra o menu in game. Uma lista com todas as letras que foram tentadas, o número de tentativas e a palavra
-        # oculta.
-        print('\n' + " ".join(h_alphanum))
-        print(f'Tentativas restantes: {tries}\n')
-        print(' '.join(h_word))
-        # Verifica se ainda existem tentativas, senão encerra o loop.
-        if tries == 0:
-            print(f'Você perdeu! A palavra/frase secreta é {word}')
-            # Aguarda o jogador pressionar ENTER.
-            input()
-            break
-        if h_word == list(word):
-            print('Acertô mizerávi!')
-            # Aguarda o jogador pressionar ENTER.
-            input()
-            break
-        # Captura apenas o primeiro caractere
-        l = str(input('\nLetra: ')).upper()[0]
-        # Verifica se a letra já foi digitada consultando a lista de letras.
-        if l in h_alphanum:
-            print(f'Você já tentou o caractere {l}!')
-            input()
-            continue
-        else:
-            h_alphanum.append(l)
-        # Atualiza a palavra oculta caso exista a letra na palavra/frase.
-        if l in word:
-            for i in range(0, len(word)):
-                if word[i] == l:
-                    h_word[i] = l
-        else:
-            tries -= 1
-
-
-def play_a(words):
+def play(words):
+    # Guarda a lista de palavras ocultas.
     h_words = []
     for i in range(0, len(words)):
-        words[i] = words[i].upper()
-        h_words.append(hide(words[i].upper()))
+        # Copia uma versão oculta para a lista.
+        h_words.append(hide(words[i]))
     # Armazena a última palavra/frase em uma variável, essa é a dica.
     tip = words[-1].upper()
     # Retira a dica da lista de palavras ocultas e da lista de palavras.
     h_words.pop()
     words.pop()
+    # Lista que vai guardar todos os caracteres digitados.
     h_alphanum = []
     tries = 5
     while True:
@@ -84,11 +46,14 @@ def play_a(words):
         print(f'\nDica: {tip}')
         # Verifica se ainda existem tentativas, senão encerra o loop.
         if tries == 0:
-            print('Você perdeu! As palavras/frases secretas são')
+            if len(words) > 1:
+                print('Você perdeu! As palavras/frases secretas são')
+            else:
+                print('Você perdeu! A palavra/frase secreta é')
             for w in words:
                 print(w)
             # Aguarda o jogador pressionar ENTER.
-            input()
+            input('OK')
             break
         win = True
         # Verifica se as palavras estão diferentes, se sim, invalida a vitória.
@@ -105,7 +70,7 @@ def play_a(words):
         # Verifica se a letra já foi digitada consultando a lista de letras.
         if l in h_alphanum:
             print(f'Você já tentou a letra {l}!')
-            input()
+            input('OK')
             continue
         else:
             h_alphanum.append(l)
@@ -124,19 +89,24 @@ def play_a(words):
 def versus():
     while True:
         print('1 Simples\n2 Avançado\n3 Voltar')
+        # Captura apenas o primeiro caractere.
         op = str(input())[0]
+        words = []
         if op == '1':
-            play_s(str(input('Digite a palavra/frase secreta: ')))
+            word = str(input('Digite a palavra/frase secreta: ')).strip().upper()
+            tip = str(input('Qual é a dica? : ')).strip().upper()
+            words.append(word)
+            words.append(tip)
+            play(words)
             break
         elif op == '2':
-            words = []
-            for i in range(0, 3):
-                if i != 2:
-                    w = str(input(f'Digite a {i+1}ª palavra/frase: '))
+            for i in range(0, 4):
+                if i != 3:
+                    w = str(input(f'Digite a {i+1}ª palavra/frase: ')).strip().upper()
                     words.append(w)
                 else:
                     words.append(str(input('Qual é a dica? ')))
-            play_s(words)
+            play(words)
             break
         elif op == '3':
             break
@@ -151,6 +121,7 @@ def mainloop():
         op = str(input())[0]
         if op == '1':
             print('Jogo Solo em desenvolvimento...')
+            input('OK')
         elif op == '2':
             versus()
         elif op == '3':
