@@ -1,6 +1,6 @@
-#Hangman v2.0
-#Programador: Will
-#__________________________________________________________
+from random import randint
+from time import sleep
+
 white = '\033[;30;m'
 red = '\033[;31;m'
 green = '\033[;32;m'
@@ -10,6 +10,49 @@ purple = '\033[;35;m'
 glue = '\033[;36;m'
 gray = '\033[;37;m'
 alphanum = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+# Forca com o boneco
+hangman = list("__________\n|        |\n|         \n|          \n|          \n|\n|")
+
+
+# Atualiza o boneco na forca (mudar para uma guilhotina se possível)
+def update_hangman(tries):
+    if tries == 5:
+        return
+    elif tries == 4:
+        hangman[31] = 'O'
+        hangman[42] = '|'
+    elif tries == 3:
+        hangman[41] = '/'
+    elif tries == 2:
+        hangman[43] = '\\'
+    elif tries == 1:
+        hangman[53] = '/'
+    elif tries == 0:
+        hangman[55] = '\\'
+
+
+# Reseta o boneco para o estado original
+def reset_hangman():
+    hangman[31] = ' '
+    hangman[42] = ' '
+    hangman[41] = ' '
+    hangman[43] = ' '
+    hangman[53] = ' '
+    hangman[55] = ' '
+
+
+# Mostra uma animação de carregamento
+def loading():
+    for i in range(4, -1, -1):
+        update_hangman(i)
+    print('Carregando...')
+    for l in hangman:
+        if l == '\n':
+            sleep(0.3)
+            print(l, end='')
+        else:
+            print(l, end='')
+    reset_hangman()
 
 
 # Recebe uma palavra/frase e retorna uma lista com os caracteres escondidos por underscore.
@@ -24,6 +67,7 @@ def hide(word):
 
 
 def play(words):
+    loading()
     # Guarda a lista de palavras ocultas.
     h_words = []
     for i in range(0, len(words)):
@@ -38,11 +82,13 @@ def play(words):
     h_alphanum = []
     tries = 5
     while True:
+        update_hangman(tries)
         print('\n' + '=' * 40)
         print(" ".join(h_alphanum))
-        print(f'Tentativas restantes: {tries}\n')
+        print(f'Tentativas restantes: {tries}')
+        print(''.join(hangman))
         for w in h_words:
-            print(' '.join(w))
+            print('| ' + ' '.join(w))
         print(f'\nDica: {tip}')
         # Verifica se ainda existem tentativas, senão encerra o loop.
         if tries == 0:
@@ -63,13 +109,15 @@ def play(words):
         if win:
             print('Acertô mizerávi!')
             # Aguarda o jogador pressionar ENTER.
-            input()
+            input('OK')
             break
         # Captura apenas o primeiro caractere
-        l = str(input('\nLetra: ')).upper()[0]
+        l = str(input('\nLetra: ')).upper()
+        if len(l) == 0:
+            op = '0'
         # Verifica se a letra já foi digitada consultando a lista de letras.
         if l in h_alphanum:
-            print(f'Você já tentou a letra {l}!')
+            print(f'Você já tentou o caractere {l}!')
             input('OK')
             continue
         else:
@@ -84,13 +132,16 @@ def play(words):
                         h_words[x][y] = l
         if not h:
             tries -= 1
+    reset_hangman()
 
 
 def versus():
     while True:
         print('1 Simples\n2 Avançado\n3 Voltar')
         # Captura apenas o primeiro caractere.
-        op = str(input())[0]
+        op = str(input())
+        if len(op) == 0:
+            op = '0'
         words = []
         if op == '1':
             word = str(input('Digite a palavra/frase secreta: ')).strip().upper()
@@ -118,7 +169,10 @@ def mainloop():
         print(f'{glue}{"JOGO DA FORCA V3.0":*^40}{white}')
         print(f'=' * 40)
         print(f'{purple}1 Novo Jogo Solo\n{blue}2 Novo Jogo Versus\n{red}3 Sair{white}')
-        op = str(input())[0]
+        op = str(input())
+        # Evita o erro de indexação caso o jogador pressione ENTER sem digitar algo
+        if len(op) == 0:
+            op = '0'
         if op == '1':
             print('Jogo Solo em desenvolvimento...')
             input('OK')
